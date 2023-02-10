@@ -32,7 +32,7 @@ app.use('/api/users', userRouter)
 //midware for todo api
 app.use('/api/todos', todoRouter)
 
-app.listen(3000, ()=>{
-    console.log("server is running, listening on http://localhost:3000")
+app.listen(8080, ()=>{
+    console.log("server is running, listening on http://localhost:8080")
 })
 
