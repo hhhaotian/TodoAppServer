@@ -14,7 +14,7 @@ router.post('/', async (req, res) => {
             data: translateResult[1].data
         })
     }catch(e){
-        res.status(401).send({
+        res.status(403).send({
             status: "reject",
             data: e
         })

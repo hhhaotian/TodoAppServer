@@ -60,19 +60,20 @@ const addUser = (req, res) => {
     pool.query(queires.getUsersByUsername, [username], (error, results) => {
         if(error) throw error
         if(results.rows.length){
-            res.status(401).send({
+            res.status(403).send({
                 status:"reject",
-                data: `${username} exists, please login`
+                data: `username exists, please login`
+            })
+        }else{
+            //add user to db
+            pool.query(queires.addUser, [username, password, type], (error, results) => {
+                if (error) throw error
+                res.status(201).send({
+                    status: 'ok',
+                    data: "user created successfully"
+                })
             })
         }
-        //add user to db
-        pool.query(queires.addUser, [username, password, type], (error, results) => {
-            if (error) throw error
-            res.status(201).send({
-                status: 'ok',
-                data: "user created successfully"
-            })
-        })
     })
 
 }
